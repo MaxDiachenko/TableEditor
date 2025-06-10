@@ -30,7 +30,9 @@ class DocumentVm(
         evaluator = evaluatorFactory(model)
         if(model.cellCount > 0){
             DependencyBuilder.buildAllDependencies(model).forEach{f ->
-                f.result = evaluator.evaluate(f.expression!!)}
+                f.result = evaluator.evaluate(f.expression!!)
+                updateDependents(f).toList()
+            }
         }
     }
 
